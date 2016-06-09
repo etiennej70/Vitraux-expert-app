@@ -12,12 +12,21 @@
     </div>
     <?php
       $listeVitraux = json_decode(file_get_contents("http://steatite.hypertopic.org/corpus/Vitraux%20-%20B%C3%A9nel"), true);
+      $listePropre = array();
       foreach ($listeVitraux["rows"] as $cle => $valeur) {
-        echo '<div class="col-md-2>';
-        echo '<h3>'.$valeur["value"]["name"].'</h3>';
-        echo '<img src="';
-        echo $valeur["value"]["thumbnail"];
-        echo '"/ class="img-responsive">';
+        if(count($valeur["key"]) == 2) {
+          if(isset($valeur["value"]["name"])) {
+            $listePropre[$valeur["key"][1]]["nom"] = $valeur["value"]["name"];
+          }
+          if(isset($valeur["value"]["thumbnail"])) {
+            $listePropre[$valeur["key"][1]]["thumbnail"] = $valeur["value"]["thumbnail"];
+          }
+        }       
+      }
+      foreach ($listePropre as $id => $donnee) {
+        echo '<div class="col-md-2">';
+        echo '<p><a href="fiche.php?'.$id.'">'.$donnee["nom"].'</a></p>';
+        echo  '<img src="'.$donnee["thumbnail"].'" class="img-responsive"/>';
         echo '</div>';
       }
     ?>
