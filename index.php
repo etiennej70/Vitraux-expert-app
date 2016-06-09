@@ -15,7 +15,9 @@
       foreach ($listeVitraux["rows"] as $cle => $valeur) {
         echo '<div class="col-md-2>';
         echo '<h3>'.$valeur["value"]["name"].'</h3>';
-        echo '<img src="'.$valeur["value"]["thumbnail"].'"/>';
+        echo '<img src="';
+        echo $valeur["value"]["thumbnail"];
+        echo '"/ class="img-responsive">';
         echo '</div>';
       }
     ?>
