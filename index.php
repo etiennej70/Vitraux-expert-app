@@ -25,7 +25,7 @@
       }
       foreach ($listePropre as $id => $donnee) {
         echo '<div class="col-md-2">';
-        echo '<p><a href="fiche.php?'.$id.'">'.$donnee["nom"].'</a></p>';
+        echo '<p><a href="fiche.php?vitrail='.$id.'">'.$donnee["nom"].'</a></p>';
         echo  '<img src="'.$donnee["thumbnail"].'" class="img-responsive"/>';
         echo '</div>';
       }
