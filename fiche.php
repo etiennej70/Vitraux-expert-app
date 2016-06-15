@@ -60,7 +60,9 @@ try {
 <html>
 <head>
   <title>POC vitraux experts</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div class="row">
