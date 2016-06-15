@@ -29,7 +29,7 @@
         }       
       }
       foreach ($listePropre as $id => $donnee) {
-        echo '<a href="fiche.php?'.$id.'"><div class="col-md-2 resume_case">';
+        echo '<a href="fiche.php?vitrail='.$id.'"><div class="col-md-2 resume_case">';
         echo  '<img src="'.$donnee["thumbnail"].'" class="img-responsive vitrail_thumb"/>';       
         echo '<p class="vitrail_link">'.$donnee["nom"].'</p>';
         echo '</div>';
