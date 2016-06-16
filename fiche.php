@@ -22,39 +22,6 @@ $fb = new Facebook\Facebook([
   'app_secret' => $config['facebook']['app_secret'],
   'default_graph_version' => $config['facebook']['default_graph_version'],
 ]);
-
-$helper = $fb->getJavaScriptHelper();
-try {
-  $accessToken = $helper->getAccessToken();
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
-  // When Graph returns an error
-  echo 'Graph returned an error: ' . $e->getMessage();
-  exit;
-} catch(Facebook\Exceptions\FacebookSDKException $e) {
-  // When validation fails or other local issues
-  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-  exit;
-}
-
-if (isset($accessToken)) {
-  $fb->setDefaultAccessToken('{access-token}');
-
-try {
-    $response = $fb->get('/me');
-    $userNode = $response->getGraphUser();
-  } catch(Facebook\Exceptions\FacebookResponseException $e) {
-    // When Graph returns an error
-    echo 'Graph returned an error: ' . $e->getMessage();
-    exit;
-  } catch(Facebook\Exceptions\FacebookSDKException $e) {
-    // When validation fails or other local issues
-    echo 'Facebook SDK returned an error: ' . $e->getMessage();
-    exit;
-  }
-
-  echo 'Logged in as ' . $userNode->getName();
-}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,6 +32,15 @@ try {
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
   <div class="row">
     <div class="col-md-4">
     	<!--On affiche l'image du vitrail-->
@@ -104,27 +80,9 @@ try {
     		}  		
     	?>
     	<hr>
-      <fb:comments>  
+      <div class="fb-comments" data-href="http://vitraux-experts.dev.etiennejacquot.com/fiche.php?vitrail=<?php echo $id_vitrail ?>" data-width="100%" data-numposts="5"></div>
     </div>
   </div>
 
-<script>
-	//Connection asynchrone avec Facebok pour le bloc de commentaires
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1247840275244568',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/fr_FR/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 </body>
 </html>
