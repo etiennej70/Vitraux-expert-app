@@ -1,7 +1,13 @@
+/*************************
+* Généralités
+*************************/
 .row {
 	margin: 0;
 }
 
+/*************************
+* Page d'index
+*************************/
 .header h1, .header h2 {
 	text-align: center;
 }
@@ -42,4 +48,19 @@
 
 .vitrail_link {
 	color: #7F1B1B;
+}
+
+/*************************
+* Page fiche de vitrail
+*************************/
+.vitrail_img {
+	height: 100%;
+}
+
+.vitrail_img img {
+	padding: 10px;
+}
+
+.vitrail_data {
+	padding: 10px;
 }
